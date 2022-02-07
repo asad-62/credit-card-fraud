@@ -27,58 +27,25 @@ from sklearn.metrics import accuracy_score # evaluation metric
 from sklearn.metrics import f1_score # evaluation metric
 
 #####
-
-
-
-
-
-
 df=pd.read_csv('creditcard.csv')
  
 x=df.drop('Class',axis=1).values
 y=df['Class'].values
 X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
-# 1. Decision Tree
-
-tree_model = DecisionTreeClassifier(max_depth = 4, criterion = 'entropy')
-tree_model.fit(X_train, y_train)
-tree_yhat = tree_model.predict(X_test)
-
-# 2. knn
+# 1. knn
 knn_model=KNeighborsClassifier(n_neighbors = 5)
 knn_model.fit(X_train, y_train)
 knn_predicted=knn_model.predict(X_test)
-
-
-#4. SVM
+#2. SVM
 svm_model=SVC()
 svm_model.fit(X_train,y_train)
 svm_predicted=svm_model.predict(X_test)
-
-
-
 # 1. Accuracy score
-
 print(cl('ACCURACY SCORE', attrs = ['bold']))
-print(cl('------------------------------------------------------------------------', attrs = ['bold']))
-print(cl('Accuracy score of the Decision Tree model is {}'.format(accuracy_score(y_test, tree_yhat)), attrs = ['bold']))
+
 print(cl('------------------------------------------------------------------------', attrs = ['bold']))
 print(cl('Accuracy score of the KNN model is {}'.format(accuracy_score(y_test, knn_predicted)), attrs = ['bold'], color = 'green'))
 
 print(cl('------------------------------------------------------------------------', attrs = ['bold']))
 print(cl('Accuracy score of the SVM model is {}'.format(accuracy_score(y_test, svm_predicted)), attrs = ['bold']))
 print(cl('------------------------------------------------------------------------', attrs = ['bold']))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
