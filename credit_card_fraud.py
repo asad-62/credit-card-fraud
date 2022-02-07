@@ -34,13 +34,7 @@ from sklearn.metrics import f1_score # evaluation metric
 
 
 df=pd.read_csv('creditcard.csv')
-'''
-### class imbalance and non normalized value of the "amount column"
-sc = StandardScaler()
-amount = df['Amount'].values
-
-df['Amount'] = sc.fit_transform(amount.reshape(-1, 1))
-'''
+ 
 x=df.drop('Class',axis=1).values
 y=df['Class'].values
 X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=0)
